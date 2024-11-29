@@ -1,0 +1,34 @@
+export function fadeIn(element, duration = 400) {
+    element.style.opacity = 0;
+    element.style.display = 'block';
+
+    let last = +new Date();
+    const tick = function() {
+        element.style.opacity = +element.style.opacity + (new Date() - last) / duration;
+        last = +new Date();
+
+        if (+element.style.opacity < 1) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+    };
+
+    tick();
+}
+
+export function fadeOut(element, duration = 400) {
+    element.style.opacity = 1;
+
+    let last = +new Date();
+    const tick = function() {
+        element.style.opacity = +element.style.opacity - (new Date() - last) / duration;
+        last = +new Date();
+
+        if (+element.style.opacity > 0) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        } else {
+            element.style.display = 'none';
+        }
+    };
+
+    tick();
+}

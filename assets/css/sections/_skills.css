@@ -1,0 +1,30 @@
+/* Skills Section */
+.skills {
+    background-color: var(--light-bg);
+    padding: var(--spacing-xl) 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.skill-item {
+    background: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md);
+    transition: transform var(--transition-base);
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
