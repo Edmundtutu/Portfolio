@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     background: var(--light-bg);
+    position: relative;
 }
 
 .hero-content h1 {
@@ -30,4 +31,32 @@
 
 .cta-button:hover {
     background: #27ae60;
+}
+
+.cloud {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+    background: url('../../images/cloud.svg') no-repeat center center;
+    background-size: contain;
+    z-index: 1;
+}
+
+.drop {
+    position: absolute;
+    bottom: 100%;
+    width: 5px;
+    height: 15px;
+    background: blue;
+    opacity: 0.7;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
 }
