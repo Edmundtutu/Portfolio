@@ -1,15 +1,18 @@
 :root {
-    /* Colors */
+    /* Light Theme Colors */
+    --background-color: #ffffff;
+    --text-color: #333333;
     --primary-color: #2ecc71;
     --secondary-color: #2c3e50;
-    --text-color: #333;
+
+    /* Colors */
     --light-bg: #f9f9f9;
     --error-color: #dc3545;
     --success-color: #28a745;
     
     /* Typography */
-    --font-primary: 'Inter', sans-serif;
-    --font-secondary: 'Poppins', sans-serif;
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'JetBrains Mono', monospace;
     --font-size-base: 16px;
     --line-height-base: 1.5;
     
@@ -40,4 +43,35 @@
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 16px;
+    
+    /* Typing Effect */
+    --typing-effect: 0.8s steps(10) forwards; /* Adjust steps for speed */
+}
+
+@media (prefers-color-scheme: dark) {
+    /* Dark Theme Colors */
+    :root {
+        --background-color: #333333;
+        --text-color: #ffffff;
+        --primary-color: #1abc9c;
+        --secondary-color: #34495e;
+    }
+}
+
+/* Add this new class for the typing effect */
+.typing-effect {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide the overflow */
+    border-right: 2px solid; /* Cursor effect */
+    animation: typing var(--typing-effect), blink-caret 0.75s step-end infinite; 
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary-color); } 
 }
