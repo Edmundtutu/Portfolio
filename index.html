@@ -8,37 +8,52 @@
     <meta name="author" content="Edmund Tutuma">
     <title>Edmund Tutuma - Portfolio</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Font Awesome -->
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">Edmund Tutuma</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+        <div class="container">
+            <div class="logo">
+                <a href="#home">Edmund<span class="highlight">Tutuma</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="burger" aria-label="Menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="typing-effect">Hi, I'm <span class="highlight">Edmund Tutuma</span></h1>
-            <p>Software Engineer</p>
-            <a href="#contact" class="cta-button">Get in Touch</a>
-            <a href="#" class="cta-button">Download Resume</a>
+            <h1 class="hero-title">Hi, I'm <span class="highlight">Edmund Tutuma</span></h1>
+            <p class="hero-subtitle">Full Stack Developer & Software Engineer</p>
+            <div class="cta-container">
+                <a href="#contact" class="cta-button">Get in Touch</a>
+                <a href="#" class="cta-button outline" download>Download CV</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/EdmundTutu" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/tutuma-edmund-931197282" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/EdmundTutuma" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/+256763977921" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
-        <!-- <div class="cloud"></div> -->
     </section>
 
     <!-- About Section -->
@@ -69,70 +84,116 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Get in Touch</h2>
-        <div class="contact-container">
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Enter your name" 
-                        required
-                        minlength="2"
-                        maxlength="50"
-                    >
-                    <span class="error-message" id="name-error"></span>
+    <!-- Experience & Contact Section -->
+    <section id="experience-contact" class="experience-contact section">
+        <div class="container">
+            <div class="section-content">
+                <!-- Experience Section -->
+                <div id="experience" class="experience-section">
+                    <h2>Experience</h2>
+                    <div class="timeline">
+                        <!-- Experience items will be dynamically added with JavaScript -->
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Enter your email" 
-                        required
-                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                    >
-                    <span class="error-message" id="email-error"></span>
-                </div>
+                <!-- Contact Section -->
+                <div id="contact" class="contact-section">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:your.email@example.com">edmundmundtutuma@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+256763977921">+256 763 977 921</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mbarara, Uganda</span>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input 
-                        type="text" 
-                        id="subject" 
-                        name="subject" 
-                        placeholder="Enter message subject" 
-                        required
-                        minlength="2"
-                        maxlength="100"
-                    >
-                    <span class="error-message" id="subject-error"></span>
-                </div>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    placeholder="Enter your name" 
+                                    required
+                                    minlength="2"
+                                    maxlength="50"
+                                >
+                                <span class="error-message" id="name-error"></span>
+                            </div>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea 
-                        id="message" 
-                        name="message" 
-                        placeholder="Enter your message" 
-                        required
-                        minlength="10"
-                        maxlength="1000"
-                    ></textarea>
-                    <span class="error-message" id="message-error"></span>
-                </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="Enter your email" 
+                                    required
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                                >
+                                <span class="error-message" id="email-error"></span>
+                            </div>
 
-                <button type="submit" class="submit-btn">
-                    <span class="btn-text">Send Message</span>
-                    <span class="loader"></span>
-                </button>
-            </form>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    name="subject" 
+                                    placeholder="Enter message subject" 
+                                    required
+                                    minlength="2"
+                                    maxlength="100"
+                                >
+                                <span class="error-message" id="subject-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    placeholder="Enter your message" 
+                                    required
+                                    minlength="10"
+                                    maxlength="1000"
+                                ></textarea>
+                                <span class="error-message" id="message-error"></span>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="loader"></span>
+                            </button>
+                        </form>
+
+                        <div class="social-links">
+                            <a href="https://github.com/EdmundTutu" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/tutuma-edmund-931197282" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://x.com/EdmundTutuma" target="_blank" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://wa.me/+256763977921" target="_blank" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -151,6 +212,5 @@
     </footer>
 
     <script type="module" src="assets/js/main.js"></script>
-    <script type="module" src="assets/js/components/RainMatrix.js"></script>
 </body>
 </html>

@@ -1,56 +1,41 @@
-import projects from './data/projects.js';
-import skills from './data/skills.js';
-import { fadeIn, fadeOut } from './utils/animations.js';
-import { debounce, throttle } from './utils/helpers.js';
-import FormValidator from './components/FormValidator.js';
+// Import components
 import Navigation from './components/Navigation.js';
-import Notification from './components/Notification.js';
+import { Projects } from './components/Projects.js';
+import { Skills } from './components/Skills.js';
+import { Experience } from './components/Experience.js';
+import FormValidator from './components/FormValidator.js';
 
-// Populate Projects
-function populateProjects() {
-    const projectsGrid = document.querySelector('.projects-grid');
-    
-    projects.forEach(project => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
-        projectCard.innerHTML = `
-            <img src="./.${project.image}" alt="${project.title}">
-            <div class="project-info">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <div class="technologies">
-                    ${project.technologies.map(tech => `<span>${tech}</span>`).join('')}
-                </div>
-                <a href="${project.link}" class="project-link">View Project</a>
-            </div>
-        `;
-        projectsGrid.appendChild(projectCard);
-    });
-}
-
-// Populate Skills
-function populateSkills() {
-    const skillsGrid = document.querySelector('.skills-grid');
-    
-    skills.forEach(skill => {
-        const skillItem = document.createElement('div');
-        skillItem.className = 'skill-item';
-        skillItem.innerHTML = `
-            <div class="skill-name">${skill}</div>
-        `;
-        skillsGrid.appendChild(skillItem);
-    });
-}
-
-// Initialize
+// Initialize components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new Navigation();
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        new FormValidator(contactForm);
-    }
-    populateProjects();
-    populateSkills();
-});
+    try {
+        // Initialize navigation
+        const navigation = new Navigation();
 
-export default Navigation;
+        // Initialize main sections with error handling
+        const projectsContainer = document.querySelector('.projects-grid');
+        if (projectsContainer) {
+            const projects = new Projects();
+        }
+
+        const skillsContainer = document.querySelector('.skills-grid');
+        if (skillsContainer) {
+            const skills = new Skills();
+        }
+
+        const experienceContainer = document.querySelector('.timeline');
+        if (experienceContainer) {
+            const experience = new Experience();
+        }
+
+        // Initialize form validation
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            new FormValidator(contactForm);
+        }
+
+        // Log successful initialization
+        console.log('All components initialized successfully');
+    } catch (error) {
+        console.error('Error initializing components:', error);
+    }
+});

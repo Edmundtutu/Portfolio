@@ -1,63 +1,151 @@
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: var(--light-bg);
+    padding: var(--spacing-xl) 0;
+    background: var(--background-color);
     position: relative;
+    overflow: hidden;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1) 0%, rgba(var(--secondary-color-rgb), 0.1) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.hero-title {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
     margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s var(--animation-timing) forwards;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-light);
+    color: var(--muted-color);
+    margin-bottom: var(--spacing-lg);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s var(--animation-timing) 0.2s forwards;
 }
 
 .highlight {
     color: var(--primary-color);
-    
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+}
+
+.highlight:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.cta-container {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s var(--animation-timing) 0.4s forwards;
 }
 
 .cta-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: var(--spacing-md) var(--spacing-lg);
     background: var(--primary-color);
     color: white;
     text-decoration: none;
     border-radius: var(--border-radius-md);
-    margin-top: var(--spacing-lg);
-    transition: background var(--transition-base);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-md);
 }
 
 .cta-button:hover {
-    background: #27ae60;
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
-.cloud {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 100px;
-    background: url('../../images/cloud.svg') no-repeat center center;
-    background-size: contain;
-    z-index: 1;
+.cta-button.outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
-.drop {
-    position: absolute;
-    bottom: 100%;
-    width: 5px;
-    height: 15px;
-    background: blue;
-    opacity: 0.7;
-    animation: fall linear forwards;
+.cta-button.outline:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
-@keyframes fall {
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
     to {
-        transform: translateY(100vh);
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: var(--breakpoint-md)) {
+    .hero-title {
+        font-size: calc(var(--font-size-h1) * 0.8);
+    }
+    
+    .hero-subtitle {
+        font-size: calc(var(--font-size-h4) * 0.9);
+    }
+    
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: var(--breakpoint-sm)) {
+    .hero-title {
+        font-size: calc(var(--font-size-h1) * 0.6);
+    }
+    
+    .hero-subtitle {
+        font-size: calc(var(--font-size-h4) * 0.8);
     }
 }

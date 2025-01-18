@@ -11,7 +11,7 @@
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(245, 245, 245, 0.9);
     border-radius: var(--border-radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-md);

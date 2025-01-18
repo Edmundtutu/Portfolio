@@ -18,18 +18,18 @@
 @import 'sections/_about.css';
 @import 'sections/_project.css';
 @import 'sections/_skills.css';
-@import 'sections/_contact.css';
+@import 'sections/_experience-contact.css';
 
 /* Utilities */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--breakpoint-xl);
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
 
 .section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--section-spacing) 0;
 }
 
 /* Responsive Utilities */
@@ -47,42 +47,66 @@
 
 /* Custom Scrollbar */
 body {
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #888 #f1f1f1; /* For Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted-color) var(--light-bg);
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family: var(--font-primary);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar for better UX */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--light-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: var(--muted-color);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--primary-color);
 }
 
-
-.navbar {
-    background: var(--background-color);
-}
-
+/* Dark Theme */
 .dark-theme {
-    background-color: var(--background-color-dark);
-    color: var(--text-color-dark);
+    --background-color: var(--background-color-dark);
+    --text-color: var(--text-color-dark);
+    --light-bg: var(--light-bg-dark);
+    --border-color: var(--border-color-dark);
 }
 
-.dark-theme .navbar {
-    background: var(--secondary-color-dark);
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Add similar rules for other elements */
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
