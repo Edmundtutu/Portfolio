@@ -84,12 +84,30 @@
         --background-color: #0D1B2A;
         --text-color: #F5F5F5;
         --primary-color: #1ABC9C;
-        --secondary-color: rgba(0, 0, 0, 0.2); 
+        --secondary-color: #293532;
         --accent-color: #3498DB;
         --light-bg: #1A2634;
         --border-color: #2C3E50;
         --muted-color: #718093;
+        
+        /* Dark theme specific colors for cards and sections */
+        --card-bg: #1A2634;
+        --card-text: #F5F5F5;
+        --skill-bg: #1A2634;
+        --skill-text: #F5F5F5;
     }
+}
+
+/* Dark Theme Override */
+.dark-theme {
+    --background-color: #0D1B2A;
+    --text-color: #F5F5F5;
+    --light-bg: #1A2634;
+    --border-color: #2C3E50;
+    --card-bg: #1A2634;
+    --card-text: #F5F5F5;
+    --skill-bg: #0D1B2A;
+    --skill-text: #F5F5F5;
 }
 
 /* Add this new class for the typing effect */

@@ -7,11 +7,22 @@ const skills = [
     "JavaScript",
     "PHP",
     "MySQL",
-    // Add your specific skills here
     "Node.js",
     "Python",
     "Git",
-    "RESTful APIs"
+    "RESTful APIs",
+    "Kotlin",
+    "TensorFlow",
+    "PyTorch",
+    "Agile",
+    "UI/UX Design",
+    "WordPress",
+    "API Integration",
+    "Firebase",
+    "Machine Learning",
+    "Team Collaboration",
+    "Unit Testing",
+    "Project Management"
 ];
 
 export default skills;
