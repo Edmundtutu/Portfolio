@@ -1,11 +1,9 @@
 /* Projects Section */
 .projects {
-    background-color: white;
+    background-color: var(--background-color);
     padding: var(--spacing-xl) 0;    
 }
-.projects h2{
-    color: black;
-}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
