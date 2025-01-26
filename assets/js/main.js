@@ -4,6 +4,7 @@ import { Projects } from './components/Projects.js';
 import { Skills } from './components/Skills.js';
 import { Experience } from './components/Experience.js';
 import FormValidator from './components/FormValidator.js';
+import { Certifications } from './components/Certifications.js';
 
 // Initialize components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
             new FormValidator(contactForm);
+        }
+
+        // Initialize certifications
+        const certificationsContainer = document.querySelector('.certifications-grid');
+        if (certificationsContainer) {
+            const certifications = new Certifications();
         }
 
         // Log successful initialization

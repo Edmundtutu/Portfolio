@@ -26,6 +26,7 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#certifications">Certifications</a></li>
             </ul>
             <button class="theme-toggle" aria-label="Toggle dark mode">
                 <i class="fas fa-moon"></i>
@@ -84,6 +85,14 @@
         </div>
     </section>
 
+    <!-- Add this after the Skills section -->
+    <section id="certifications" class="certifications">
+        <h2>Certifications & Badges</h2>
+        <div class="certifications-grid">
+            <!-- Certification cards will be dynamically added here -->
+        </div>
+    </section>
+
     <!-- Experience & Contact Section -->
     <section id="experience-contact" class="experience-contact section">
         <div class="container">
@@ -138,8 +147,9 @@
                                     name="email" 
                                     placeholder="Enter your email" 
                                     required
-                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                                 >
+                                    <!-- pattern="[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" -->
+                                <!-- > -->
                                 <span class="error-message" id="email-error"></span>
                             </div>
 
