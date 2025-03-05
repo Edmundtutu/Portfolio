@@ -1,7 +1,7 @@
 const projects = [
     {
         title: "Yo Spotify",
-        description: "A web application clone of Spotify, built using React, Vite, and Tailwind CSS, leveraging the Spotify Web API for music streaming capabilities.",
+        description: "A web clone of Spotify, leveraging the New Spotify Web API for music streaming capabilities.",
         image: "/assets/images/yospotify.svg",
         technologies: ["React", "Vite", "Tailwind CSS", "Spotify New Web API"],
         link: "https://yo-spotify.vercel.app/"
