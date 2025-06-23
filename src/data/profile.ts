@@ -18,29 +18,77 @@ export const works: Work[] = [
 
 export const carouselItems: CarouselItem[] = [
   {
-    id: 1,
-    title: 'Mountain Retreat',
-    description: 'A peaceful getaway in the mountains',
-    image: 'https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=800',
+    id: 'react',
+    title: 'React',
+    description: 'A JavaScript library for building user interfaces with component-based architecture and virtual DOM for optimal performance.',
+    image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Frontend',
+    level: 'Expert',
+    yearsOfExperience: 4
   },
   {
-    id: 2,
-    title: 'Ocean View',
-    description: 'Beautiful sunset by the ocean',
-    image: 'https://images.pexels.com/photos/1012982/pexels-photo-1012982.jpeg?auto=compress&cs=tinysrgb&w=800',
+    id: 'typescript',
+    title: 'TypeScript',
+    description: 'A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.',
+    image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Language',
+    level: 'Expert',
+    yearsOfExperience: 3
   },
   {
-    id: 3,
-    title: 'Urban Adventure',
-    description: 'Explore the city lights',
-    image: 'https://images.pexels.com/photos/3052361/pexels-photo-3052361.jpeg?auto=compress&cs=tinysrgb&w=800',
+    id: 'nodejs',
+    title: 'Node.js',
+    description: 'A JavaScript runtime built on Chrome\'s V8 engine for building scalable network applications and server-side development.',
+    image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Backend',
+    level: 'Advanced',
+    yearsOfExperience: 3
   },
   {
-    id: 4,
-    title: 'Forest Hike',
-    description: 'Nature trails through ancient forests',
-    image: 'https://images.pexels.com/photos/240040/pexels-photo-240040.jpeg?auto=compress&cs=tinysrgb&w=800',
+    id: 'python',
+    title: 'Python',
+    description: 'A versatile programming language perfect for web development, data science, AI, and automation with clean syntax.',
+    image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Language',
+    level: 'Expert',
+    yearsOfExperience: 5
   },
+  {
+    id: 'aws',
+    title: 'AWS',
+    description: 'Amazon Web Services cloud platform providing scalable computing, storage, and networking infrastructure solutions.',
+    image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Cloud',
+    level: 'Intermediate',
+    yearsOfExperience: 2
+  },
+  {
+    id: 'docker',
+    title: 'Docker',
+    description: 'Containerization platform that enables developers to package applications with their dependencies for consistent deployment.',
+    image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'DevOps',
+    level: 'Advanced',
+    yearsOfExperience: 2
+  },
+  {
+    id: 'mongodb',
+    title: 'MongoDB',
+    description: 'A NoSQL document database that provides high performance, high availability, and easy scalability for modern applications.',
+    image: 'https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Database',
+    level: 'Advanced',
+    yearsOfExperience: 3
+  },
+  {
+    id: 'git',
+    title: 'Git',
+    description: 'Distributed version control system for tracking changes in source code during software development projects.',
+    image: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=400',
+    category: 'Tools',
+    level: 'Expert',
+    yearsOfExperience: 5
+  }
 ];
 
 export const testimonials: Testimonial[] = [
@@ -54,4 +102,4 @@ export const testimonials: Testimonial[] = [
     feedback: "Professional, reliable, and highly skilled. Highly recommended!",
     avatar: "https://randomuser.me/api/portraits/men/2.jpg"
   }
-]; 
+];

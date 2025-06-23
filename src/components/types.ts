@@ -4,6 +4,9 @@ export interface CarouselItem {
   title?: string;
   description?: string;
   image?: string;
+  category?: string;
+  level?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  yearsOfExperience?: number;
   [key: string]: any; // Allow additional properties
 }
 
