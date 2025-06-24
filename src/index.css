@@ -185,15 +185,30 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  min-height: 500px;
 }
 
 .carousel-section {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
 }
 
-.tech-carousel {
-  height: 400px;
+/* Responsive carousel styling */
+.tech-carousel--horizontal {
+  width: 100%;
+  height: 100%;
   background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.tech-carousel--vertical {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
   border-radius: 1rem;
   padding: 2rem;
 }
@@ -465,10 +480,16 @@ main {
   .tech-stack-content {
     grid-template-columns: 1fr;
     gap: 3rem;
+    min-height: auto;
   }
   
-  .tech-carousel {
-    height: 300px;
+  .carousel-section {
+    min-height: 300px;
+  }
+  
+  .tech-carousel--horizontal,
+  .tech-carousel--vertical {
+    height: 100%;
   }
 }
 
@@ -495,8 +516,12 @@ main {
     font-size: 2rem;
   }
   
-  .tech-carousel {
-    height: 250px;
+  .carousel-section {
+    min-height: 250px;
+  }
+  
+  .tech-carousel--horizontal,
+  .tech-carousel--vertical {
     padding: 1rem;
   }
   
@@ -572,7 +597,8 @@ main {
     background-clip: text;
   }
   
-  .tech-carousel {
+  .tech-carousel--horizontal,
+  .tech-carousel--vertical {
     background: radial-gradient(circle at center, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
   }
   

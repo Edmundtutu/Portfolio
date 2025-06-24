@@ -16,21 +16,27 @@ export interface CarouselProps {
   radius?: number;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
-  initialRotation?: number;
+  initialItemIndex?: number;
   visibleCount?: number;
   onSelectItem?: (item: CarouselItem, index: number) => void;
   className?: string;
+  axis?: 'x' | 'y'; // 'x' for vertical, 'y' for horizontal
 }
 
 // Props for each carousel item
 export interface CarouselItemProps {
   item: CarouselItem;
   index: number;
-  rotation: number;
-  radius: number;
+  position: {
+    x: number;
+    y: number;
+    z: number;
+    rotation: number;
+  };
   isSelected: boolean;
   isAnimating: boolean;
   onClick: () => void;
+  axis?: 'x' | 'y';
 }
 
 export interface Work {

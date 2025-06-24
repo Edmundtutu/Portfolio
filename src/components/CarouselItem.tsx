@@ -5,47 +5,101 @@ import './Carousel.css';
 const CarouselItem: React.FC<CarouselItemProps> = ({
   item,
   index,
-  rotation,
-  radius,
+  position,
   isSelected,
   isAnimating,
   onClick,
+  axis = 'y',
 }) => {
-  // For selected item, always show face-on (rotation 0deg)
-  const itemAngle = isSelected ? 0 : rotation;
-  const translateZ = radius;
+  // 3D transform calculation
+  const getTransform = () => {
+    if (!position) {
+      return 'translate3d(0px, 0px, 0px)';
+    }
+    
+    const { x, y, z, rotation } = position;
+    
+    // Translate to position, then rotate to face center
+    const translate = `translate3d(${x}px, ${y}px, ${z}px)`;
+    const rotate = axis === 'y' 
+      ? `rotateY(${rotation}deg)` 
+      : `rotateX(${rotation}deg)`;
+    
+    return `${translate} ${rotate}`;
+  };
 
-  // Scale: selected is larger, others smaller
-  const scale = isSelected ? 1.15 : 0.7;
-  // Z-index: selected on top
-  const zIndex = isSelected ? 200 : 100 - Math.abs(rotation) / 3.6;
-  // Opacity: selected fully visible, others faded
-  const opacity = isSelected ? 1 : 0.5;
+  // Calculate opacity based on position
+  const getOpacity = () => {
+    if (!position) return 0.5;
+    
+    // Items closer to the front (higher z values) are more visible
+    const normalizedZ = (position.z + 300) / 600; // Normalize z position
+    const baseOpacity = isSelected ? 1 : Math.max(0.4, normalizedZ);
+    
+    return baseOpacity;
+  };
+
+  // Calculate scale based on selection and position
+  const getScale = () => {
+    if (isSelected) return 1.1;
+    if (!position) return 0.8;
+    
+    // Scale based on z position (closer items are larger)
+    const normalizedZ = (position.z + 300) / 600;
+    return 0.7 + (normalizedZ * 0.3);
+  };
+
+  // Dynamic styles
+  const itemStyle: React.CSSProperties = {
+    transform: getTransform(),
+    opacity: getOpacity(),
+    zIndex: isSelected ? 100 : Math.round(50 + (position?.z || 0) / 10),
+    transition: isAnimating 
+      ? 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' 
+      : 'opacity 0.3s ease',
+  };
+
+  const contentStyle: React.CSSProperties = {
+    transform: `scale(${getScale()})`,
+    transition: isAnimating 
+      ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)' 
+      : 'transform 0.3s ease',
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClick();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  };
 
   return (
     <div
-      className={`carousel-item${isSelected ? ' selected' : ''}`}
-      style={{
-        transform: `rotateY(${itemAngle}deg) translateZ(${translateZ}px) scale(${scale})`,
-        opacity,
-        zIndex,
-        transition: isAnimating ? 'transform 0.5s, opacity 0.5s' : undefined,
-      }}
-      onClick={onClick}
-      role="group"
-      aria-roledescription="slide"
-      aria-label={`Slide ${index + 1} of ${item.title}`}
-      aria-selected={isSelected}
+      className={`carousel-item ${isSelected ? 'selected' : ''}`}
+      style={itemStyle}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
       tabIndex={isSelected ? 0 : -1}
+      role="button"
+      aria-label={`${item.title || `Item ${index + 1}`}${isSelected ? ' (selected)' : ''}`}
+      aria-pressed={isSelected}
     >
-      <div className="carousel-item-content">
+      <div className="carousel-item-content" style={contentStyle}>
         {item.image && (
-          <div className="carousel-item-image large">
-            <img src={item.image} alt={item.title || `Item ${index + 1}`} />
-          </div>
+          <img 
+            src={item.image} 
+            alt={item.title || `Item ${index + 1}`} 
+            className="carousel-image"
+            loading="lazy"
+          />
         )}
         {item.title && (
-          <h3 className="carousel-item-title light">{item.title}</h3>
+          <h3 className="carousel-title">{item.title}</h3>
         )}
       </div>
     </div>

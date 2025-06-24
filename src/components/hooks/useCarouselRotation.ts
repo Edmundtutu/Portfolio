@@ -5,6 +5,7 @@ interface UseCarouselRotationProps {
   initialRotation?: number;
   autoRotate?: boolean;
   autoRotateSpeed?: number;
+  axis?: 'x' | 'y';
 }
 
 export interface UseCarouselRotationReturn {
@@ -21,38 +22,28 @@ export interface UseCarouselRotationReturn {
 
 /**
  * Hook to handle carousel rotation state and animations
+ * This is a simplified version that works with the new Carousel implementation
  */
 const useCarouselRotation = ({
   itemCount,
   initialRotation = 0,
   autoRotate = false,
   autoRotateSpeed = 5000,
+  axis = 'y'
 }: UseCarouselRotationProps): UseCarouselRotationReturn => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [rotation, setRotation] = useState(initialRotation);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(0);
   const autoRotateTimeoutRef = useRef<number | null>(null);
   const lastInteractionTime = useRef<number>(Date.now());
   
   // Calculate angle for each item
-  const itemAngle = 360 / itemCount;
+  const itemAngle = itemCount > 0 ? 360 / itemCount : 0;
   
   // Get the rotation angle for a specific item
   const getItemRotation = useCallback((index: number) => {
     return index * itemAngle;
   }, [itemAngle]);
-  
-  // Calculate the currently selected item based on rotation
-  useEffect(() => {
-    // Get the index of the frontmost item (opposite to current rotation)
-    const normalizedRotation = ((rotation % 360) + 360) % 360;
-    const closestItemAngle = Math.round(normalizedRotation / itemAngle) * itemAngle;
-    const itemIndex = Math.round(closestItemAngle / itemAngle) % itemCount;
-    
-    // Make sure we use the positive index (0 to itemCount-1)
-    const positiveIndex = (itemIndex + itemCount) % itemCount;
-    setSelectedItemIndex(positiveIndex);
-  }, [rotation, itemAngle, itemCount]);
   
   // Start animation to a target rotation
   const startAnimation = useCallback((targetRotation: number) => {
@@ -60,31 +51,36 @@ const useCarouselRotation = ({
     setRotation(targetRotation);
     lastInteractionTime.current = Date.now();
     
-    // Animation takes approximately 500ms
+    // Animation takes approximately 600ms
     setTimeout(() => {
       setIsAnimating(false);
-    }, 500);
+    }, 600);
   }, []);
   
   // Go to a specific item by index
   const goToItem = useCallback((index: number) => {
+    if (index < 0 || index >= itemCount || index === selectedIndex) return;
+    
+    setSelectedIndex(index);
     const targetRotation = -getItemRotation(index);
     startAnimation(targetRotation);
-  }, [getItemRotation, startAnimation]);
+  }, [itemCount, selectedIndex, getItemRotation, startAnimation]);
   
   // Go to next item
   const goToNext = useCallback(() => {
-    startAnimation(rotation - itemAngle);
-  }, [rotation, itemAngle, startAnimation]);
+    const nextIndex = (selectedIndex + 1) % itemCount;
+    goToItem(nextIndex);
+  }, [selectedIndex, itemCount, goToItem]);
   
   // Go to previous item
   const goToPrev = useCallback(() => {
-    startAnimation(rotation + itemAngle);
-  }, [rotation, itemAngle, startAnimation]);
+    const prevIndex = (selectedIndex - 1 + itemCount) % itemCount;
+    goToItem(prevIndex);
+  }, [selectedIndex, itemCount, goToItem]);
   
   // Auto-rotation effect
   useEffect(() => {
-    if (!autoRotate) return;
+    if (!autoRotate || itemCount === 0) return;
 
     const rotate = () => {
       // Only auto-rotate if user hasn't interacted in the last 2 seconds
@@ -101,7 +97,7 @@ const useCarouselRotation = ({
         clearTimeout(autoRotateTimeoutRef.current);
       }
     };
-  }, [autoRotate, autoRotateSpeed, goToNext]);
+  }, [autoRotate, autoRotateSpeed, goToNext, itemCount]);
   
   return {
     rotation,
@@ -112,7 +108,7 @@ const useCarouselRotation = ({
     goToNext,
     goToPrev,
     getItemRotation,
-    selectedItemIndex,
+    selectedItemIndex: selectedIndex,
   };
 };
 
