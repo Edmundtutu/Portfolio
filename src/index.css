@@ -551,7 +551,7 @@ main {
 .tech-stack-content {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem; /* Reduced from 3rem to minimize void space */
 }
 
 .tech-stack-main {
@@ -701,6 +701,7 @@ main {
 /* Tech Grid Section - Now spans full width below main content */
 .tech-grid-section {
   width: 100%;
+  margin-top: 1rem; /* Reduced from default to minimize void space */
 }
 
 .tech-grid {
@@ -812,7 +813,7 @@ main {
 
 .testimonial-carousel-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
 }
 
 .testimonial-carousel-item {
@@ -843,8 +844,8 @@ main {
   justify-content: center;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
-  background: #f1f5f9;
+  color: #64748b; /* More subtle/duller color */
+  background: #f8fafc; /* Lighter background */
   border-radius: 20px;
   padding: 0.5rem 1rem;
   margin: 0 auto 1.5rem auto;
@@ -1369,12 +1370,13 @@ main {
     background: #64748b;
   }
   
-  .role, .section-description {
+  /* Hero section dark mode */
+  .role {
     color: #94a3b8;
   }
   
-  .name, .section-title {
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  .name {
+    background: linear-gradient(135deg, #f1f5f9, #60a5fa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1408,6 +1410,15 @@ main {
     box-shadow: 0 8px 16px rgba(0,0,0,0.4);
   }
   
+  /* Works section dark mode */
+  .section-title {
+    color: #f1f5f9;
+  }
+  
+  .section-description {
+    color: #94a3b8;
+  }
+  
   .work-item {
     border-color: #334155;
   }
@@ -1423,6 +1434,10 @@ main {
   
   .work-details h3 {
     color: #f1f5f9;
+  }
+  
+  .work-details p {
+    color: #94a3b8;
   }
   
   .tooltip {

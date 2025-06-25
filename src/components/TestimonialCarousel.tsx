@@ -8,40 +8,22 @@ interface TestimonialCarouselProps {
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerView, setItemsPerView] = useState(1);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoPlayRef = useRef<NodeJS.Timeout>();
 
-  // Calculate items per view based on screen size
-  useEffect(() => {
-    const updateItemsPerView = () => {
-      const width = window.innerWidth;
-      if (width >= 1400) {
-        setItemsPerView(3);
-      } else if (width >= 1024) {
-        setItemsPerView(2);
-      } else if (width >= 640) {
-        setItemsPerView(1);
-      } else {
-        setItemsPerView(1);
-      }
-    };
+  // Fixed items per view - always show 1 item to avoid responsive issues
+  const itemsPerView = 1;
 
-    updateItemsPerView();
-    window.addEventListener('resize', updateItemsPerView);
-    return () => window.removeEventListener('resize', updateItemsPerView);
-  }, []);
-
-  // Auto-play functionality
+  // Auto-play functionality with slower speed
   useEffect(() => {
-    if (isAutoPlaying && testimonials.length > itemsPerView) {
+    if (isAutoPlaying && testimonials.length > 1) {
       autoPlayRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => {
-          const maxIndex = testimonials.length - itemsPerView;
+          const maxIndex = testimonials.length - 1;
           return prevIndex >= maxIndex ? 0 : prevIndex + 1;
         });
-      }, 4000);
+      }, 6000); // Increased from 4000ms to 6000ms for slower speed
     }
 
     return () => {
@@ -49,34 +31,33 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
         clearInterval(autoPlayRef.current);
       }
     };
-  }, [isAutoPlaying, testimonials.length, itemsPerView]);
+  }, [isAutoPlaying, testimonials.length]);
 
   const goToPrevious = () => {
     setIsAutoPlaying(false);
     setCurrentIndex((prevIndex) => {
-      const maxIndex = testimonials.length - itemsPerView;
+      const maxIndex = testimonials.length - 1;
       return prevIndex <= 0 ? maxIndex : prevIndex - 1;
     });
-    setTimeout(() => setIsAutoPlaying(true), 5000);
+    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
   };
 
   const goToNext = () => {
     setIsAutoPlaying(false);
     setCurrentIndex((prevIndex) => {
-      const maxIndex = testimonials.length - itemsPerView;
+      const maxIndex = testimonials.length - 1;
       return prevIndex >= maxIndex ? 0 : prevIndex + 1;
     });
-    setTimeout(() => setIsAutoPlaying(true), 5000);
+    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
   };
 
   const goToSlide = (index: number) => {
     setIsAutoPlaying(false);
     setCurrentIndex(index);
-    setTimeout(() => setIsAutoPlaying(true), 5000);
+    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
   };
 
-  const maxIndex = testimonials.length - itemsPerView;
-  const canShowControls = testimonials.length > itemsPerView;
+  const canShowControls = testimonials.length > 1;
 
   return (
     <div className="testimonial-carousel-container">
@@ -85,7 +66,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           <button
             className="testimonial-nav-button testimonial-nav-prev"
             onClick={goToPrevious}
-            aria-label="Previous testimonials"
+            aria-label="Previous testimonial"
           >
             <ChevronLeft size={20} />
           </button>
@@ -100,8 +81,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           <div 
             className="testimonial-carousel-track"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-              width: `${(testimonials.length / itemsPerView) * 100}%`
+              transform: `translateX(-${currentIndex * 100}%)`,
+              width: `${testimonials.length * 100}%`
             }}
           >
             {testimonials.map((testimonial, index) => (
@@ -128,7 +109,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           <button
             className="testimonial-nav-button testimonial-nav-next"
             onClick={goToNext}
-            aria-label="Next testimonials"
+            aria-label="Next testimonial"
           >
             <ChevronRight size={20} />
           </button>
@@ -137,12 +118,12 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
 
       {canShowControls && (
         <div className="testimonial-indicators">
-          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+          {testimonials.map((_, index) => (
             <button
               key={index}
               className={`testimonial-indicator ${index === currentIndex ? 'active' : ''}`}
               onClick={() => goToSlide(index)}
-              aria-label={`Go to testimonial group ${index + 1}`}
+              aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
         </div>
