@@ -79,66 +79,70 @@ const TechStackCarousel: React.FC<TechStackCarouselProps> = ({ items }) => {
       </div>
       
       <div className="tech-stack-content">
-        <div className="carousel-section">
-          <Carousel 
-            items={items}
-            radius={isLargeScreen ? 200 : 140}
-            axis={isLargeScreen ? 'x' : 'y'}
-            autoRotate={true}
-            autoRotateSpeed={4000}
-            onSelectItem={handleSelectItem}
-            className={`tech-carousel tech-carousel--${isLargeScreen ? 'vertical' : 'horizontal'}`}
-          />
-        </div>
-        
-        <div className="tech-details-section">
-          {selectedItem && (
-            <div className="selected-tech-card">
-              <div className="tech-card-header">
-                <div className="tech-icon-wrapper">
-                  {getCategoryIcon(selectedItem.category || '')}
+        <div className="tech-stack-main">
+          <div className="carousel-section">
+            <Carousel 
+              items={items}
+              radius={isLargeScreen ? 200 : 140}
+              axis={isLargeScreen ? 'x' : 'y'}
+              autoRotate={true}
+              autoRotateSpeed={4000}
+              onSelectItem={handleSelectItem}
+              className={`tech-carousel tech-carousel--${isLargeScreen ? 'vertical' : 'horizontal'}`}
+            />
+          </div>
+          
+          <div className="tech-details-section">
+            {selectedItem && (
+              <div className="selected-tech-card">
+                <div className="tech-card-header">
+                  <div className="tech-icon-wrapper">
+                    {getCategoryIcon(selectedItem.category || '')}
+                  </div>
+                  <div className="tech-title-group">
+                    <h3 className="tech-title">{selectedItem.title}</h3>
+                    <div className="tech-meta">
+                      <span className="tech-category">{selectedItem.category}</span>
+                      <span 
+                        className="tech-level"
+                        style={{ color: getLevelColor(selectedItem.level || '') }}
+                      >
+                        {selectedItem.level}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="tech-title-group">
-                  <h3 className="tech-title">{selectedItem.title}</h3>
-                  <div className="tech-meta">
-                    <span className="tech-category">{selectedItem.category}</span>
-                    <span 
-                      className="tech-level"
-                      style={{ color: getLevelColor(selectedItem.level || '') }}
-                    >
-                      {selectedItem.level}
+                
+                <p className="tech-description">{selectedItem.description}</p>
+                
+                <div className="tech-stats">
+                  <div className="tech-stat">
+                    <span className="stat-label">Experience</span>
+                    <span className="stat-value">
+                      {selectedItem.yearsOfExperience}+ years
                     </span>
                   </div>
-                </div>
-              </div>
-              
-              <p className="tech-description">{selectedItem.description}</p>
-              
-              <div className="tech-stats">
-                <div className="tech-stat">
-                  <span className="stat-label">Experience</span>
-                  <span className="stat-value">
-                    {selectedItem.yearsOfExperience}+ years
-                  </span>
-                </div>
-                <div className="tech-stat">
-                  <span className="stat-label">Proficiency</span>
-                  <div className="proficiency-bar">
-                    <div 
-                      className="proficiency-fill"
-                      style={{ 
-                        width: selectedItem.level === 'Expert' ? '95%' : 
-                               selectedItem.level === 'Advanced' ? '80%' : 
-                               selectedItem.level === 'Intermediate' ? '65%' : '40%',
-                        backgroundColor: getLevelColor(selectedItem.level || '')
-                      }}
-                    />
+                  <div className="tech-stat">
+                    <span className="stat-label">Proficiency</span>
+                    <div className="proficiency-bar">
+                      <div 
+                        className="proficiency-fill"
+                        style={{ 
+                          width: selectedItem.level === 'Expert' ? '95%' : 
+                                 selectedItem.level === 'Advanced' ? '80%' : 
+                                 selectedItem.level === 'Intermediate' ? '65%' : '40%',
+                          backgroundColor: getLevelColor(selectedItem.level || '')
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-          
+            )}
+          </div>
+        </div>
+        
+        <div className="tech-grid-section">
           <div className="tech-grid">
             {items.map((item) => (
               <div
