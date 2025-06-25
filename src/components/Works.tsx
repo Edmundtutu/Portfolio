@@ -10,7 +10,7 @@ const Works: React.FC<WorksProps> = ({ works }) => (
   <section className="card">
     <h2 className="section-title">My Works</h2>
     <p className="section-description">
-      Discover my portfolio, where purposeful interfaces meet captivating design. My work strives to enhance experiences and inspire.
+      Discover what i have go'en my hands onto. My work captures solutions to multiple real world problems in Health, Education and DevSecOps.
     </p>
     <div className="work-list">
       {works.map((work, index) => (
