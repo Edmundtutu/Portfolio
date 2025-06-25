@@ -34,7 +34,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
     setSubmitStatus('idle');
 
     try {
-      // EmailJS configuration
+      // Email to yourself
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -48,12 +48,26 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
         reply_to: formData.email
       };
 
-      // Replace these with your actual EmailJS credentials
+      // Send main email
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_vs4qbko',
+        'template_5tqdndw',
         templateParams,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        '0N7-V9m1OrWeJyumM'
+      );
+
+      // Auto-reply to user
+      const autoReplyParams = {
+        from_name: formData.name,
+        email: formData.email,
+        project_type: formData.project,
+      };
+
+      await emailjs.send(
+        'service_vs4qbko',
+        'template_eeim4v9',
+        autoReplyParams,
+        '0N7-V9m1OrWeJyumM'
       );
 
       setSubmitStatus('success');
@@ -66,7 +80,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
         timeline: '',
         message: ''
       });
-      
+
       setTimeout(() => {
         onClose();
         setSubmitStatus('idle');
@@ -135,7 +149,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
             <form onSubmit={handleSubmit} className="hire-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
+                  <label htmlFor="name">Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -143,7 +157,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Your Name"
                   />
                 </div>
                 <div className="form-group">
@@ -155,7 +169,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    placeholder="john@example.com"
+                    placeholder="yourname@gmail.com"
                   />
                 </div>
               </div>
@@ -181,11 +195,12 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
                     onChange={handleInputChange}
                     required
                   >
-                    <option value="">Select project type</option>
+                    <option value="">Select kind of project your desire </option>
                     <option value="Web Development">Web Development</option>
                     <option value="Mobile App">Mobile App</option>
                     <option value="Full Stack Application">Full Stack Application</option>
                     <option value="API Development">API Development</option>
+                    <option value="Chatbot">Chatbot</option>
                     <option value="Consulting">Consulting</option>
                     <option value="Other">Other</option>
                   </select>
@@ -202,11 +217,9 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
                     onChange={handleInputChange}
                   >
                     <option value="">Select budget range</option>
-                    <option value="Under $5,000">Under $5,000</option>
-                    <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                    <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                    <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                    <option value="$50,000+">$50,000+</option>
+                    <option value="Under sized">Under sized budget</option>
+                    <option value="Over sized">Over sized budget</option>
+                    <option value="Volunteer">Volunteer</option>
                   </select>
                 </div>
                 <div className="form-group">
@@ -268,6 +281,9 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="modal-footer">
+          <div>
+            <p>...Lets connnect more on...</p>
+          </div>
           <div className="social-links">
             {socialLinks.map((link, index) => (
               <a

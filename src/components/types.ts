@@ -47,6 +47,7 @@ export interface Work {
 
 export interface Testimonial {
   name: string;
+  role: string;
   feedback: string;
   avatar: string;
 }

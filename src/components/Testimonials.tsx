@@ -14,7 +14,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => (
     <div className="testimonial-list">
       {testimonials.map((t, idx) => (
         <div key={idx} className="testimonial-item">
-          <img src={t.avatar} alt={t.name} className="testimonial-avatar" />
+          <div className="testimonial-role">{t.role}</div>
           <div className="testimonial-content">
             <p className="testimonial-feedback">"{t.feedback}"</p>
             <span className="testimonial-name">- {t.name}</span>
@@ -25,4 +25,4 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => (
   </section>
 );
 
-export default Testimonials; 
+export default Testimonials;
