@@ -5,7 +5,7 @@ export const profile = {
   name: "Edmund Tutuma",
   role: "Software Engineer",
   location: "Mbarara, Uganda",
-  description: `Backend Engineer specializing in microservices, event-driven architectures, and cloud-native deployments\n`,
+  description: "I'm a Backend Engineer who likes crafting microservices, implementing event-driven architectures, and deploying cloud-native applications",
   image: "https://avatars.githubusercontent.com/u/124844140?s=400&u=c07cd17bab6c28a398cb89f5fc681b4ee85e02b9&v=4",
   email: "edmund.tutuma@email.com",
 };
@@ -18,80 +18,52 @@ export const works: Work[] = [
 
 export const carouselItems: CarouselItem[] = [
   {
-    id: 'react',
-    title: 'React',
-    description: 'A JavaScript library for building user interfaces with component-based architecture and virtual DOM for optimal performance.',
-    image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'Frontend',
-    level: 'Expert',
-    yearsOfExperience: 4
-  },
-  {
-    id: 'typescript',
-    title: 'TypeScript',
-    description: 'A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.',
-    image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'Language',
-    level: 'Expert',
-    yearsOfExperience: 3
-  },
-  {
-    id: 'nodejs',
-    title: 'Node.js',
-    description: 'A JavaScript runtime built on Chrome\'s V8 engine for building scalable network applications and server-side development.',
-    image: 'https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=400',
+    id: 'laravel-rest-apis',
+    title: 'Laravel REST APIs',
+    description: 'REST endpoints with Eloquent relationships, JWT auth via Sanctum, queued jobs & events, and Swagger docs.',
+    image: 'https://www.logo.wine/a/logo/Laravel/Laravel-Logo.wine.svg',
     category: 'Backend',
-    level: 'Advanced',
+    level: 'Expert',
     yearsOfExperience: 3
   },
   {
-    id: 'python',
-    title: 'Python',
-    description: 'A versatile programming language perfect for web development, data science, AI, and automation with clean syntax.',
-    image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'Language',
+    id: 'android-mvvm-room-retrofit',
+    title: 'Android MVVM',
+    description: 'Android apps with ViewModel + LiveData/Flow, Room for persistence, and Retrofit for network calls in Kotlin/Java.',
+    image: 'https://img.freepik.com/premium-photo/glowing-blue-neon-android-logo-black-background_824086-4053.jpg?semt=ais_hybrid&w=740',
+    category: 'Mobile',
     level: 'Expert',
-    yearsOfExperience: 5
+    yearsOfExperience: 2
   },
   {
-    id: 'aws',
-    title: 'AWS',
-    description: 'Amazon Web Services cloud platform providing scalable computing, storage, and networking infrastructure solutions.',
-    image: 'https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'Cloud',
+    id: 'react-hooks-architecture',
+    title: 'React',
+    description: 'Component-based UIs with functional components and hooks. REST API integration and authentication flows.',
+    image: 'https://media2.dev.to/dynamic/image/width=800,height=,fit=scale-down,gravity=auto,format=auto/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sziup4s0n0zsl9khff1c.png',
+    category: 'Frontend',
+    level: 'Advanced',
+    yearsOfExperience: 2
+  },
+  {
+    id: 'spring-boot-microservices',
+    title: 'Spring Boot Microservices',
+    description: 'REST microservices with Spring Boot, including JWT-based security, Swagger/OpenAPI documentation, and resilience patterns.',
+    image: 'https://wallpaperaccess.com/full/9954228.png',
+    category: 'Backend',
     level: 'Intermediate',
-    yearsOfExperience: 2
-  },
+    yearsOfExperience: 1
+  },  
   {
-    id: 'docker',
-    title: 'Docker',
-    description: 'Containerization platform that enables developers to package applications with their dependencies for consistent deployment.',
-    image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'DevOps',
-    level: 'Advanced',
-    yearsOfExperience: 2
-  },
-  {
-    id: 'mongodb',
-    title: 'MongoDB',
-    description: 'A NoSQL document database that provides high performance, high availability, and easy scalability for modern applications.',
-    image: 'https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: 'Database',
-    level: 'Advanced',
-    yearsOfExperience: 3
-  },
-  {
-    id: 'git',
-    title: 'Git',
-    description: 'Distributed version control system for tracking changes in source code during software development projects.',
-    image: 'https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=400',
+    id: 'maven-library-publishing',
+    title: 'Maven',
+    description: 'Reusable modules, structured POM, semantic versioning, unit-tested with JUnit, and published to a repository for sharing.',
+    image: 'https://www.mend.io/wp-content/uploads/2024/02/How-to-Use-Dependency-Injection-in-Java_-Tutorial-with-Examples.png',
     category: 'Tools',
-    level: 'Expert',
-    yearsOfExperience: 5
-  }
+    level: 'Advanced',
+    yearsOfExperience: 2
+  },
 ];
-
-export const testimonials: Testimonial[] = [
+export const testimonials: Testimonial[] = [  
   {
     name: "Dr Adones Rukundo",
     role: "Founder, Ovum Care",

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel';
 import { CarouselItem } from './types';
-import { Code2, Database, Cloud, Wrench, Globe, Cpu } from 'lucide-react';
+import { Code2, Database, Cloud, Wrench, Globe, Cpu, Smartphone } from 'lucide-react';
 
 type TechStackCarouselProps = {
   items: CarouselItem[];
@@ -13,6 +13,8 @@ const getCategoryIcon = (category: string) => {
       return <Globe size={20} />;
     case 'backend':
       return <Cpu size={20} />;
+    case 'mobile':
+      return <Smartphone size={20} />;
     case 'database':
       return <Database size={20} />;
     case 'cloud':
