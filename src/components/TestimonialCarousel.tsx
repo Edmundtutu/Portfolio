@@ -63,10 +63,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
           style={{ flex: 1, minHeight: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
+          >
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index} 
               className="testimonial-slide"
               style={{
                 position: 'absolute',
@@ -93,9 +93,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
                   "{testimonial.feedback}"
                 </p>
                 <span className="testimonial-name" style={{ fontWeight: 600 }}>— {testimonial.name}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
       {testimonials.length > 1 && (

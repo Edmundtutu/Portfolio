@@ -11,10 +11,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
     project: '',
-    budget: '',
-    timeline: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,10 +35,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        company: formData.company,
         project_type: formData.project,
-        budget: formData.budget,
-        timeline: formData.timeline,
         message: formData.message,
         to_email: 'edmundtutuma@gmail.com',
         subject: `New Project Inquiry from ${formData.name} - ${formData.project}`,
@@ -74,10 +68,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
       setFormData({
         name: '',
         email: '',
-        company: '',
         project: '',
-        budget: '',
-        timeline: '',
         message: ''
       });
 
@@ -130,7 +121,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-container" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '90vh', overflowY: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <div className="modal-header">
           <h2 className="modal-title">Let's Work Together</h2>
           <button className="modal-close" onClick={onClose}>
@@ -175,18 +166,7 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="company">Company/Organization</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    placeholder="Your Company"
-                  />
-                </div>
-                <div className="form-group">
+                <div className="form-group project-type-fullwidth">
                   <label htmlFor="project">Project Type *</label>
                   <select
                     id="project"
@@ -203,39 +183,6 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
                     <option value="Chatbot">Chatbot</option>
                     <option value="Consulting">Consulting</option>
                     <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="budget">Budget Range</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Select budget range</option>
-                    <option value="Under sized">Under sized budget</option>
-                    <option value="Over sized">Over sized budget</option>
-                    <option value="Volunteer">Volunteer</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="timeline">Timeline</label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleInputChange}
-                  >
-                    <option value="">Select timeline</option>
-                    <option value="ASAP">ASAP</option>
-                    <option value="1-2 weeks">1-2 weeks</option>
-                    <option value="1 month">1 month</option>
-                    <option value="2-3 months">2-3 months</option>
-                    <option value="3+ months">3+ months</option>
                   </select>
                 </div>
               </div>
@@ -282,7 +229,9 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
 
         <div className="modal-footer">
           <div>
-            <p>...Lets connnect more on...</p>
+            <p style={{ color: '#64748b', fontStyle: 'italic', marginBottom: '0.5rem', fontSize: '1rem', textAlign: 'center' }}>
+              ...Let's connect more on...
+            </p>
           </div>
           <div className="social-links">
             {socialLinks.map((link, index) => (
@@ -306,3 +255,21 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
 };
 
 export default HireModal;
+
+/* Hide scrollbar for Webkit browsers */
+<style>{`
+  .modal-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .project-type-fullwidth {
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+`}</style>
