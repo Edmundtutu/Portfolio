@@ -551,7 +551,6 @@ main {
 .tech-stack-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Reduced from 3rem to minimize void space */
 }
 
 .tech-stack-main {
@@ -559,7 +558,7 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
-  min-height: 500px;
+  min-height: 300px;
 }
 
 .carousel-section {
@@ -567,7 +566,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  min-height: 300px;
 }
 
 /* Responsive carousel styling */

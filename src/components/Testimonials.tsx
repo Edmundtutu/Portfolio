@@ -9,10 +9,7 @@ type TestimonialsProps = {
 const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => (
   <section className="card testimonials-section">
     <div className="testimonials-header">
-      <h2 className="section-title">What others say!!</h2>
-      <p className="section-description">
-        Some of the digital products that I have built, explore and try it now
-      </p>
+      <h2 className="section-title">See what others say!!</h2>
     </div>
     <TestimonialCarousel testimonials={testimonials} />
   </section>

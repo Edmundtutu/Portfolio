@@ -17,7 +17,6 @@
 
 /* Vertical carousel (larger screens) */
 .carousel-container--x {
-  min-height: 400px;
   perspective: 1500px;
 }
 

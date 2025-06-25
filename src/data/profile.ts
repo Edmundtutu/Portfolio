@@ -72,7 +72,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: "Henry Nkuke",
-    role: "Senior Developer, Interswitch Uganda",
+    role: "Senior Developer, Interswitch",
     feedback: "Professional, reliable, and highly skilled. Highly recommended!",
     avatar: "https://randomuser.me/api/portraits/men/2.jpg"
   },

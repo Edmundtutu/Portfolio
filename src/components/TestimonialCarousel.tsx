@@ -1,129 +1,112 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Testimonial } from './types';
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
 }
 
+const LARGE_SCREEN_WIDTH = 1024;
+
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const autoPlayRef = useRef<NodeJS.Timeout>();
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const autoPlayRef = useRef<number>();
 
-  // Fixed items per view - always show 1 item to avoid responsive issues
-  const itemsPerView = 1;
-
-  // Auto-play functionality with slower speed
+  // Responsive screen detection
   useEffect(() => {
-    if (isAutoPlaying && testimonials.length > 1) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const maxIndex = testimonials.length - 1;
-          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-        });
-      }, 6000); // Increased from 4000ms to 6000ms for slower speed
-    }
-
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current);
-      }
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= LARGE_SCREEN_WIDTH);
     };
-  }, [isAutoPlaying, testimonials.length]);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const goToPrevious = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prevIndex) => {
-      const maxIndex = testimonials.length - 1;
-      return prevIndex <= 0 ? maxIndex : prevIndex - 1;
-    });
-    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
-  };
+  // Auto-play for small screens only
+  useEffect(() => {
+    if (!isLargeScreen && isAutoPlaying && testimonials.length > 1) {
+      autoPlayRef.current = window.setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+      }, 5000);
+    }
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [isAutoPlaying, testimonials.length, isLargeScreen]);
 
-  const goToNext = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prevIndex) => {
-      const maxIndex = testimonials.length - 1;
-      return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-    });
-    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
-  };
+  // Large screens: show all testimonials in a row, no carousel
+  if (isLargeScreen) {
+    return (
+      <div className="testimonial-carousel-container" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center', alignItems: 'stretch', flexWrap: 'nowrap', overflowX: 'auto' }}>
+        {testimonials.map((testimonial, index) => (
+          <div key={index} className="testimonial-slide" style={{ minWidth: 0, flex: '1 1 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem', background: 'none', boxShadow: 'none', border: 'none' }}>
+            <div className="testimonial-role-badge" style={{ marginBottom: '1rem' }}>{testimonial.role}</div>
+            <div className="testimonial-content" style={{ textAlign: 'center', background: 'none', boxShadow: 'none', padding: 0 }}>
+              <p className="testimonial-feedback" style={{ fontStyle: 'italic', fontSize: '1.1rem', marginBottom: '1.25rem' }}>
+                "{testimonial.feedback}"
+              </p>
+              <span className="testimonial-name" style={{ fontWeight: 600 }}>— {testimonial.name}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-  const goToSlide = (index: number) => {
-    setIsAutoPlaying(false);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAutoPlaying(true), 8000); // Longer pause after manual interaction
-  };
-
-  const canShowControls = testimonials.length > 1;
-
+  // Small screens: carousel effect
   return (
-    <div className="testimonial-carousel-container">
-      <div className="testimonial-carousel-wrapper">
-        {canShowControls && (
-          <button
-            className="testimonial-nav-button testimonial-nav-prev"
-            onClick={goToPrevious}
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft size={20} />
-          </button>
-        )}
-
-        <div 
-          ref={carouselRef}
+    <div className="testimonial-carousel-container" style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
+      <div className="testimonial-carousel-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0 }}>
+        <div
           className="testimonial-carousel"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
+          style={{ flex: 1, minHeight: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}
         >
-          <div 
-            className="testimonial-carousel-track"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-              width: `${testimonials.length * 100}%`
-            }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="testimonial-carousel-item"
-                style={{ width: `${100 / testimonials.length}%` }}
-              >
-                <div className="testimonial-card">
-                  <div className="testimonial-role-badge">
-                    {testimonial.role}
-                  </div>
-                  <div className="testimonial-content">
-                    <p className="testimonial-feedback">"{testimonial.feedback}"</p>
-                    <span className="testimonial-name">— {testimonial.name}</span>
-                  </div>
-                </div>
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="testimonial-slide"
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                opacity: index === currentIndex ? 1 : 0,
+                zIndex: index === currentIndex ? 1 : 0,
+                transition: 'opacity 0.7s cubic-bezier(0.4,0,0.2,1)',
+                pointerEvents: index === currentIndex ? 'auto' : 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '2rem 1rem',
+                background: 'none',
+                boxShadow: 'none',
+                border: 'none',
+              }}
+            >
+              <div className="testimonial-role-badge" style={{ marginBottom: '1rem' }}>{testimonial.role}</div>
+              <div className="testimonial-content" style={{ textAlign: 'center', background: 'none', boxShadow: 'none', padding: 0 }}>
+                <p className="testimonial-feedback" style={{ fontStyle: 'italic', fontSize: '1.1rem', marginBottom: '1.25rem' }}>
+                  "{testimonial.feedback}"
+                </p>
+                <span className="testimonial-name" style={{ fontWeight: 600 }}>— {testimonial.name}</span>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-
-        {canShowControls && (
-          <button
-            className="testimonial-nav-button testimonial-nav-next"
-            onClick={goToNext}
-            aria-label="Next testimonial"
-          >
-            <ChevronRight size={20} />
-          </button>
-        )}
       </div>
-
-      {canShowControls && (
-        <div className="testimonial-indicators">
+      {testimonials.length > 1 && (
+        <div className="testimonial-indicators" style={{ marginTop: '1.5rem' }}>
           {testimonials.map((_, index) => (
             <button
               key={index}
-              className={`testimonial-indicator ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => goToSlide(index)}
+              className={`testimonial-indicator${index === currentIndex ? ' active' : ''}`}
+              onClick={() => setCurrentIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}
+              style={{ transition: 'background 0.2s' }}
             />
           ))}
         </div>
