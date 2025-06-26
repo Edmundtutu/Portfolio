@@ -3,7 +3,7 @@ import { ExternalLink } from 'lucide-react';
 import { Work } from './types';
 
 type WorksProps = {
-  works: Work[];
+  works: (Work & { visitUrl?: string })[];
 };
 
 const Works: React.FC<WorksProps> = ({ works }) => (
@@ -22,7 +22,20 @@ const Works: React.FC<WorksProps> = ({ works }) => (
               <p>{work.subtitle}</p>
             </div>
           </div>
-          <ExternalLink size={20} color="#9ca3af" />
+          {work.visitUrl ? (
+            <a
+              href={work.visitUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Visit site"
+              style={{ display: 'flex', alignItems: 'center' }}
+              onClick={e => e.stopPropagation()}
+            >
+              <ExternalLink size={20} color="#9ca3af" />
+            </a>
+          ) : (
+            <ExternalLink size={20} color="#9ca3af" style={{ opacity: 0.4, cursor: 'not-allowed' }} />
+          )}
         </div>
       ))}
     </div>

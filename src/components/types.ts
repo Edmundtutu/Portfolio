@@ -43,6 +43,7 @@ export interface Work {
   title: string;
   subtitle: string;
   icon: string;
+  visitUrl:string;
 }
 
 export interface Testimonial {
