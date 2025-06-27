@@ -11,7 +11,7 @@ export const profile = {
 };
 
 export const works: Work[] = [
-  { title: "Ovum Care Solutions", subtitle: "Distributed System, Android App, Menstraul Health", icon: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=100&h=100&fit=crop&q=80", visitUrl:""},//"https://gyn.lockfreed.com"},
+  { title: "Ovum Care Solutions", subtitle: "Distributed System, Android App, Menstraul Health", icon: "https://raw.githubusercontent.com/Edmundtutu/Portfolio/refs/heads/proxy/assets/images/ovumdoc.png", visitUrl:""},//"https://gyn.lockfreed.com"},
   { title: "Somesa LMS", subtitle: "Website, Multi-Tenant Coporate Training", icon: "https://somesa.ug/assets/images/home_page/somesa_detailed_logo.png", visitUrl:"https://somesa.ug" },
   { title: "Json Library", subtitle: "Maven, Extension for JacksonLib", icon: "https://miro.medium.com/v2/resize:fit:706/1*cg0es0zkE5J7CUa2QuSRVQ.jpeg", visitUrl:"https://github.com/Edmundtutu/jsonlib"},
   { title: "Yo Spotify", subtitle: "Spotify clone, Integartion of Spotify OpenApi ", icon: "https://yo-spotify.vercel.app/logo.svg", visitUrl:"https://yo-spotify.vercel.app/"},
