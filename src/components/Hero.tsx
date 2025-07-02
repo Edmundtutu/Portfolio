@@ -13,7 +13,7 @@ const Hero: React.FC<HeroProps> = ({ name, role, description, image, email }) =>
   const [copied, setCopied] = useState(false);
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/256753977921', '_blank');
+    window.open('https://wa.me/256763977921', '_blank');
   };
 
   const handleCopy = () => {
