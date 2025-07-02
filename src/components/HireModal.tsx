@@ -87,13 +87,13 @@ const HireModal: React.FC<HireModalProps> = ({ isOpen, onClose }) => {
   const socialLinks = [
     {
       icon: <Linkedin size={20} />,
-      href: 'https://linkedin.com/in/edmund-tutuma',
+      href: 'https://www.linkedin.com/in/tutuma-edmund-931197282/',
       label: 'LinkedIn',
       color: '#0077b5'
     },
     {
       icon: <Github size={20} />,
-      href: 'https://github.com/edmundtutuma',
+      href: 'https://github.com/Edmundtutu',
       label: 'GitHub',
       color: '#333'
     },
